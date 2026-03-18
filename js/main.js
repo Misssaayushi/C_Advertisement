@@ -46,31 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Mobile Menu Toggle (Basic Implementation)
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if(menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            // Note: We need to style the mobile menu active state in CSS later
-            // For now, simple toggle
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-                navLinks.classList.remove('mobile-open');
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = 'var(--bg-light)';
-                navLinks.style.padding = '20px';
-                navLinks.style.boxShadow = 'var(--shadow-md)';
-                navLinks.classList.add('mobile-open');
-            }
-        });
-    }
+    // Mobile menu toggle logic removed in favor of CSS-only floating bottom bar.
 
     // 3. Scroll Reveal Animations
     const revealElements = document.querySelectorAll('.reveal');
