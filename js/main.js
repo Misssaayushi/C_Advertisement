@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtns = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
 
     if (themeToggleBtns.length > 0) {
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.getItem('color-theme') === 'dark') {
             themeToggleLightIcons.forEach(icon => icon.classList.remove('hidden'));
             document.documentElement.classList.add('dark');
         } else {
