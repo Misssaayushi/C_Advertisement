@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtns = document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile');
 
     if (themeToggleBtns.length > 0) {
-        if (localStorage.getItem('color-theme') === 'dark') {
+        if (localStorage.getItem('theme-preference') === 'dark') {
             themeToggleLightIcons.forEach(icon => icon.classList.remove('hidden'));
             document.documentElement.classList.add('dark');
         } else {
@@ -95,21 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeToggleDarkIcons.forEach(icon => icon.classList.toggle('hidden'));
                 themeToggleLightIcons.forEach(icon => icon.classList.toggle('hidden'));
 
-                if (localStorage.getItem('color-theme')) {
-                    if (localStorage.getItem('color-theme') === 'light') {
+                if (localStorage.getItem('theme-preference')) {
+                    if (localStorage.getItem('theme-preference') === 'light') {
                         document.documentElement.classList.add('dark');
-                        localStorage.setItem('color-theme', 'dark');
+                        localStorage.setItem('theme-preference', 'dark');
                     } else {
                         document.documentElement.classList.remove('dark');
-                        localStorage.setItem('color-theme', 'light');
+                        localStorage.setItem('theme-preference', 'light');
                     }
                 } else {
                     if (document.documentElement.classList.contains('dark')) {
                         document.documentElement.classList.remove('dark');
-                        localStorage.setItem('color-theme', 'light');
+                        localStorage.setItem('theme-preference', 'light');
                     } else {
                         document.documentElement.classList.add('dark');
-                        localStorage.setItem('color-theme', 'dark');
+                        localStorage.setItem('theme-preference', 'dark');
                     }
                 }
             });
