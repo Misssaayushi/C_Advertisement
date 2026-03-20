@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | C Advertisement</title>
+    <title>Contact | C-Advertisements</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,9 +49,9 @@
     <header class="relative w-full z-50 bg-white dark:bg-[#121212]/90 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="flex items-center space-x-2 text-primary dark:text-primaryLighter font-bold text-2xl" aria-label="C Advertisement Home">
-                    <img src="assets/Logo/C-ad without tagline.png" alt="C Advertisement Logo" class="h-10 w-auto">
-                    <span>C Advertisement</span>
+                <a href="index.html" class="flex items-center space-x-2 text-primary dark:text-primaryLighter font-bold text-2xl" aria-label="C-Advertisements Home">
+                    <img src="assets/Logo/C-ad without tagline.png" alt="C-Advertisements Logo" class="h-10 w-auto">
+                    <span>C-Advertisements</span>
                 </a>
                 
                 <nav class="hidden md:flex space-x-8 items-center">
@@ -76,18 +76,19 @@
             <h1 class="text-5xl font-bold text-gray-900 dark:text-white mb-6">Contact <span class="text-primary">Us</span></h1>
             <p class="text-xl text-gray-600 dark:text-gray-300 mb-12">Ready to kick off a high-impact campaign? Let's talk.</p>
             
-            <form class="bg-white dark:bg-[#1e1e1e] p-8 rounded-3xl shadow-md border border-gray-100 dark:border-gray-800 text-left" aria-label="Contact Form">
+            <form method="POST" data-netlify="true" name="contact" class="bg-white dark:bg-[#1e1e1e] p-8 rounded-3xl shadow-md border border-gray-100 dark:border-gray-800 text-left" aria-label="Contact Form">
+                <input type="hidden" name="form-name" value="contact">
                 <div class="mb-6">
                     <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2" for="name">Your Name</label>
-                    <input type="text" id="name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:focus:border-primary transition-all" placeholder="John Doe">
+                    <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:focus:border-primary transition-all" placeholder="John Doe" required>
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2" for="email">Your Email</label>
-                    <input type="email" id="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:focus:border-primary transition-all" placeholder="john@example.com">
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:focus:border-primary transition-all" placeholder="john@example.com" required>
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2" for="message">Message</label>
-                    <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:focus:border-primary transition-all" placeholder="Tell us about your campaign..."></textarea>
+                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:focus:border-primary transition-all" placeholder="Tell us about your campaign..." required></textarea>
                 </div>
                 <button type="submit" class="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-primaryLight transition-all">Send Message</button>
             </form>
@@ -95,15 +96,37 @@
     </main>
     
     <footer class="bg-gray-900 text-white py-8 text-center mt-auto">
-        <p>&copy; <span id="year"></span> C Advertisement. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> C-Advertisements. All rights reserved.</p>
     </footer>
     
     <script src="js/main.js"></script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-        document.querySelector('form').addEventListener('submit', (e) => {
+        document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Form submitted! We will get back to you shortly.');
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString(),
+            })
+            .then(() => {
+                form.innerHTML = `
+                    <div class="text-center py-12 animate-in fade-in zoom-in duration-500">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-6">
+                            <i class="ph-fill ph-check-circle text-5xl text-primary"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">Thank you!</h2>
+                        <p class="text-lg text-gray-600 dark:text-gray-400">Your message has been sent successfully. We will get back to you shortly.</p>
+                    </div>
+                `;
+            })
+            .catch((error) => {
+                console.error('Submission error:', error);
+                alert('Oops! There was a problem submitting your form. Please try again.');
+            });
         });
     </script>
 <nav class="md:hidden fixed bottom-6 left-4 right-4 z-50 bg-white/95 dark:bg-[#121212]/95 border border-gray-200 dark:border-gray-800 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex justify-around items-center px-2 py-3 backdrop-blur-md bg-opacity-95">

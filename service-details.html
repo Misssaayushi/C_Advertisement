@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Service Details | C-Advertisements</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#800180',
+                        primaryLight: '#a302a3',
+                        primaryLighter: '#d98cd9',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        if (localStorage.getItem('theme-preference') === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 dark:text-gray-200 antialiased bg-gray-50 dark:bg-[#121212] flex flex-col min-h-screen">
+    
+    <!-- Navigation -->
+    <header class="relative w-full z-50 bg-white dark:bg-[#121212]/90 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center space-x-2 text-primary dark:text-primaryLighter font-bold text-2xl" aria-label="C-Advertisements Home">
+                    <img src="assets/Logo/C-ad without tagline.png" alt="C-Advertisements Logo" class="h-10 w-auto">
+                    <span>C-Advertisements</span>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primaryLighter transition-colors">Home</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primaryLighter transition-colors">About</a>
+                    <a href="services.html" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primaryLighter transition-colors">Services</a>
+                    <a href="portfolio.html" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primaryLighter transition-colors">Portfolio</a>
+                    
+                    <button id="theme-toggle-desktop" type="button" class="text-gray-600 dark:text-gray-300 dark:text-gray-400 hover:text-primary dark:hover:text-primaryLighter transition-colors text-2xl mr-6 outline-none focus:outline-none flex items-center justify-center translate-y-0.5" aria-label="Toggle dark mode">
+                        <i id="theme-toggle-dark-icon-desktop" class="ph ph-moon hidden"></i>
+                        <i id="theme-toggle-light-icon-desktop" class="ph ph-sun hidden"></i>
+                    </button>
+
+                    <a href="contact.html" class="px-5 py-2.5 bg-primary text-white font-medium rounded-full shadow-lg shadow-primary/30 hover:bg-primaryLight hover:shadow-xl transition-all">Contact Us</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative h-[60vh] overflow-hidden">
+            <img id="service-hero-img" src="" alt="" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+            <div class="absolute inset-0 flex items-center justify-center text-center px-4">
+                <div class="max-w-4xl">
+                    <h1 id="service-title" class="text-5xl md:text-7xl font-bold text-white mb-6 reveal-fade-up"></h1>
+                    <div class="w-24 h-1 bg-primary mx-auto mb-8 reveal-fade-up"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="py-24 bg-white dark:bg-[#1e1e1e]">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 reveal-fade-up">Service <span class="text-primary">Overview</span></h2>
+                <p id="service-desc" class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-12 reveal-fade-up"></p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery-section" class="py-24 bg-gray-50 dark:bg-[#121212]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-16 reveal-fade-up">Recent <span class="text-primary">Projects</span></h2>
+                <div id="service-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Images will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 bg-primary text-white text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-4xl font-bold mb-8 reveal-fade-up">Love what you see?</h2>
+                <p class="text-xl mb-12 opacity-90 reveal-fade-up">Check out our complete portfolio to see how we've helped other brands dominate their space.</p>
+                <a href="portfolio.html" class="inline-flex items-center px-8 py-4 bg-white text-primary font-bold rounded-full shadow-xl hover:bg-gray-100 transition-all transform hover:scale-105 reveal-fade-up">
+                    View Portfolio
+                    <i class="ph-bold ph-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-gray-900 text-white py-8 text-center mt-auto">
+        <p>&copy; <span id="year"></span> C-Advertisements. All rights reserved.</p>
+    </footer>
+    
+    <!-- Mobile Navigation -->
+    <nav class="md:hidden fixed bottom-6 left-4 right-4 z-50 bg-white/95 dark:bg-[#121212]/95 border border-gray-200 dark:border-gray-800 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex justify-around items-center px-2 py-3 backdrop-blur-md bg-opacity-95">
+        <a href="index.html" class="flex flex-col items-center justify-center w-14 transition-colors text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-gray-200">
+            <i class="ph ph-house text-2xl mb-1"></i>
+            <span class="text-[10px] font-medium tracking-wide">Home</span>
+        </a>
+        <a href="about.html" class="flex flex-col items-center justify-center w-14 transition-colors text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-gray-200">
+            <i class="ph ph-info text-2xl mb-1"></i>
+            <span class="text-[10px] font-medium tracking-wide">About</span>
+        </a>
+        <a href="services.html" class="flex flex-col items-center justify-center w-14 transition-colors text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-gray-200">
+            <i class="ph ph-sparkle text-2xl mb-1"></i>
+            <span class="text-[10px] font-medium tracking-wide">Services</span>
+        </a>
+        <a href="portfolio.html" class="flex flex-col items-center justify-center w-14 transition-colors text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-gray-200">
+            <i class="ph ph-image text-2xl mb-1"></i>
+            <span class="text-[10px] font-medium tracking-wide">Portfolio</span>
+        </a>
+        <a href="contact.html" class="flex flex-col items-center justify-center w-14 transition-colors text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-gray-200">
+            <i class="ph ph-envelope-simple text-2xl mb-1"></i>
+            <span class="text-[10px] font-medium tracking-wide">Contact</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        const servicesData = {
+            'outdoor-ads': {
+                title: 'Outdoor Advertising',
+                heroImg: 'assets/Gantries%20and%20unipoles/WhatsApp%20Image%202025-11-11%20at%203.22.58%20PM.jpeg',
+                description: 'Experience the power of high-impact outdoor advertising with C-Advertisements. We strategically place your brand in the busiest corridors of Rajasthan—from towering gantries and unipoles to unmissable highway hoardings. Our solutions are designed to capture thousands of eyes daily, building massive brand recognition and street-level dominance.',
+                gallery: [
+                    'assets/Gantries%20and%20unipoles/WhatsApp%20Image%202025-11-11%20at%202.54.44%20PM%20(1).jpeg',
+                    'assets/Highway%20hoardings/WhatsApp%20Image%202026-03-18%20at%2010.44.14%20PM.jpeg',
+                    'assets/Highway%20hoardings/WhatsApp%20Image%202026-03-18%20at%2010.44.16%20PM%20(2).jpeg'
+                ]
+            },
+            'mall-ads': {
+                title: 'Mall Advertising',
+                heroImg: 'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.25.49%20PM.jpeg',
+                description: 'Engage high-intent shoppers where they spend their leisure time. Our mall advertising solutions include digital screens, atrium hangings, and elevator branding in premium retail destinations. Connect with your audience in a comfortable, high-conversion environment.',
+                gallery: [
+                    'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.27.25%20PM.jpeg',
+                    'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.29.48%20PM.jpeg',
+                    'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.29.49%20PM.jpeg'
+                ]
+            },
+            'cinema-ads': {
+                title: 'Cinema Advertising',
+                heroImg: 'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.27.26%20PM.jpeg',
+                description: 'Nothing beats the big screen. Cinema advertising offers a 100% captive audience, high-quality audio-visuals, and unmatched recall. We place your brand as a featured attraction before the latest blockbusters, ensuring your message leaves a lasting impression.',
+                gallery: [
+                    'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.27.26%20PM.jpeg',
+                    'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.27.27%20PM.jpeg',
+                    'assets/Mall%20and%20cinema%20branding/WhatsApp%20Image%202026-03-18%20at%2010.25.49%20PM.jpeg'
+                ]
+            },
+            'indoor-branding': {
+                title: 'Indoor Branding',
+                heroImg: 'assets/Store%20branding%20indooroutdoor/WhatsApp%20Image%202026-03-18%20at%2010.39.38%20PM.jpeg',
+                description: 'Transform your physical space into an immersive brand experience. Our indoor branding solutions cover everything from retail fascias and in-store displays to corporate lobby graphics. We create professional, cohesive environments that speak volumes about your business.',
+                gallery: [
+                    'assets/Store%20branding%20indooroutdoor/WhatsApp%20Image%202026-03-18%20at%2010.39.39%20PM.jpeg',
+                    'assets/Store%20branding%20indooroutdoor/WhatsApp%20Image%202026-03-18%20at%2010.39.56%20PM.jpeg',
+                    'assets/Store%20branding%20indooroutdoor/WhatsApp%20Image%202026-03-18%20at%2010.42.33%20PM.jpeg'
+                ]
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceId = urlParams.get('service') || 'outdoor-ads';
+        const data = servicesData[serviceId];
+
+        if (data) {
+            document.getElementById('page-title').textContent = `${data.title} | C-Advertisements`;
+            document.getElementById('service-title').textContent = data.title;
+            document.getElementById('service-hero-img').src = data.heroImg;
+            document.getElementById('service-hero-img').alt = data.title;
+            document.getElementById('service-desc').textContent = data.description;
+
+            const galleryContainer = document.getElementById('service-gallery');
+            data.gallery.forEach((imgSrc, index) => {
+                const div = document.createElement('div');
+                div.className = 'group relative h-72 rounded-2xl overflow-hidden shadow-md reveal-fade-up';
+                div.style.transitionDelay = `${(index + 1) * 100}ms`;
+                div.innerHTML = `
+                    <img src="${imgSrc}" alt="Project Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                `;
+                galleryContainer.appendChild(div);
+            });
+        }
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

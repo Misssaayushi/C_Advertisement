@@ -1,5 +1,5 @@
 /**
- * C Advertisement Main JS
+ * C-Advertisements Main JS
  */
 
 document.addEventListener('DOMContentLoaded', () => {

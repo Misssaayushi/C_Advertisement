@@ -1,6 +1,6 @@
-# C Advertisement - Outdoor Advertising Agency
+# C-Advertisements - Outdoor Advertising Agency
 
-A modern, clean, and professional 5-page service website built for **C Advertisement**, a premier outdoor advertising agency.
+A modern, clean, and professional 5-page service website built for **C-Advertisements**, a premier outdoor advertising agency.
 
 ## 🌟 Features
 
