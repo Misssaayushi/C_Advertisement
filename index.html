@@ -1,5 +1,6 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,8 +36,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .card {
@@ -61,9 +67,10 @@
         .icon {
             font-size: 56px;
             margin-bottom: 24px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
             user-select: none;
-            cursor: pointer; /* Acts as the hidden trigger */
+            cursor: pointer;
+            /* Acts as the hidden trigger */
         }
 
         h1 {
@@ -108,7 +115,7 @@
             background: #1e1e1e;
             padding: 32px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             transform: translateY(20px);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -146,105 +153,125 @@
         }
 
         .error-shake {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+            animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
             border-color: #ef4444 !important;
         }
 
         @keyframes shake {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0);
+            }
         }
 
         @media (max-width: 600px) {
             .card {
                 padding: 36px 24px;
             }
+
             h1 {
                 font-size: 24px;
             }
         }
     </style>
 </head>
+
 <body>
 
     <div class="card">
         <div class="icon" id="trigger-icon" title="Server Status: Locked">🔒</div>
         <h1>Website Temporarily Unavailable</h1>
-        <p>This website is currently unavailable due to pending payment. Please contact the developer to restore access.</p>
+        <p>This website is currently unavailable due to pending payment. Please contact the developer to restore access.
+        </p>
     </div>
 
     <!-- Developer Override Modal -->
-<div class="dev-overlay" id="dev-overlay">
-    <div class="dev-modal">
-        <h2>Developer Override</h2>
-        <div class="dev-input-group">
-            <input type="password" id="dev-password" placeholder="Enter override password" autocomplete="off">
+    <div class="dev-overlay" id="dev-overlay">
+        <div class="dev-modal">
+            <h2>Developer Override</h2>
+            <div class="dev-input-group">
+                <input type="password" id="dev-password" placeholder="Enter override password" autocomplete="off">
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Setup developer backdoor
-    const triggerIcon = document.getElementById('trigger-icon');
-    const devOverlay = document.getElementById('dev-overlay');
-    const devPassword = document.getElementById('dev-password');
+    <script>
+        // Setup developer backdoor
+        const triggerIcon = document.getElementById('trigger-icon');
+        const devOverlay = document.getElementById('dev-overlay');
+        const devPassword = document.getElementById('dev-password');
 
-    let clickCount = 0;
-    let clickTimer;
+        let clickCount = 0;
+        let clickTimer;
 
-    // Triple click on the lock icon opens the password prompt
-    triggerIcon.addEventListener('click', () => {
-        clickCount++;
-        clearTimeout(clickTimer);
+        // Triple click on the lock icon opens the password prompt
+        triggerIcon.addEventListener('click', () => {
+            clickCount++;
+            clearTimeout(clickTimer);
 
-        if (clickCount === 3) {
-            devOverlay.classList.add('active');
-            setTimeout(() => devPassword.focus(), 100);
-            clickCount = 0;
-        } else {
-            clickTimer = setTimeout(() => {
+            if (clickCount === 3) {
+                devOverlay.classList.add('active');
+                setTimeout(() => devPassword.focus(), 100);
                 clickCount = 0;
-            }, 400);
-        }
-    });
-
-    // Close modal on escape or clicking outside
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && devOverlay.classList.contains('active')) {
-            closeDevModal();
-        }
-    });
-
-    devOverlay.addEventListener('click', (e) => {
-        if (e.target === devOverlay) {
-            closeDevModal();
-        }
-    });
-
-    function closeDevModal() {
-        devOverlay.classList.remove('active');
-        devPassword.value = '';
-    }
-
-    // Handle password submission
-    devPassword.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') {
-            const val = devPassword.value;
-            // Simple hardcoded dev password 'admin'
-            if (val === 'admin') {
-                // Redirect to the original site which we assume is main.html
-                window.location.href = 'main.html';
             } else {
-                devPassword.classList.add('error-shake');
-                setTimeout(() => {
-                    devPassword.classList.remove('error-shake');
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
                 }, 400);
             }
+        });
+
+        // Close modal on escape or clicking outside
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && devOverlay.classList.contains('active')) {
+                closeDevModal();
+            }
+        });
+
+        devOverlay.addEventListener('click', (e) => {
+            if (e.target === devOverlay) {
+                closeDevModal();
+            }
+        });
+
+        function closeDevModal() {
+            devOverlay.classList.remove('active');
+            devPassword.value = '';
         }
-    });
-</script>
+
+        // Handle password submission
+        devPassword.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                const val = devPassword.value;
+                // Simple hardcoded dev password 'admin'
+                if (val === 'admin') {
+                    // Redirect to the original site which we assume is main.html
+                    window.location.href = 'main.html';
+                } else {
+                    devPassword.classList.add('error-shake');
+                    setTimeout(() => {
+                        devPassword.classList.remove('error-shake');
+                    }, 400);
+                }
+            }
+        });
+    </script>
 </body>
 
-</html> -->
+</html>
