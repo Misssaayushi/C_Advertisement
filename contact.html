@@ -237,11 +237,16 @@
                     showStatus('success', data.message || 'Your message has been sent successfully!');
                     form.reset();
                 } else {
-                    showStatus('error', data.error || 'Failed to send message.');
+                    // Check if it's a simple validation error (400), otherwise it's a server/limit error
+                    if (response.status === 400 && data.error) {
+                        showStatus('error', data.error);
+                    } else {
+                        showStatus('error', 'Our server is currently busy. Please email us directly at cads24x7@gmail.com or call 8209535082.');
+                    }
                 }
             } catch (error) {
                 console.error('Submission Error:', error);
-                showStatus('error', 'A network error occurred. Please try again later.');
+                showStatus('error', 'Network issue detected. Please email us directly at cads24x7@gmail.com or call 8209535082.');
             } finally {
                 resetButton();
             }
