@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -176,74 +176,75 @@
     </div>
 
     <!-- Developer Override Modal -->
-    <div class="dev-overlay" id="dev-overlay">
-        <div class="dev-modal">
-            <h2>Developer Override</h2>
-            <div class="dev-input-group">
-                <input type="password" id="dev-password" placeholder="Enter override password" autocomplete="off">
-            </div>
+<div class="dev-overlay" id="dev-overlay">
+    <div class="dev-modal">
+        <h2>Developer Override</h2>
+        <div class="dev-input-group">
+            <input type="password" id="dev-password" placeholder="Enter override password" autocomplete="off">
         </div>
     </div>
+</div>
 
-    <script>
-        // Setup developer backdoor
-        const triggerIcon = document.getElementById('trigger-icon');
-        const devOverlay = document.getElementById('dev-overlay');
-        const devPassword = document.getElementById('dev-password');
-        
-        let clickCount = 0;
-        let clickTimer;
+<script>
+    // Setup developer backdoor
+    const triggerIcon = document.getElementById('trigger-icon');
+    const devOverlay = document.getElementById('dev-overlay');
+    const devPassword = document.getElementById('dev-password');
 
-        // Triple click on the lock icon opens the password prompt
-        triggerIcon.addEventListener('click', () => {
-            clickCount++;
-            clearTimeout(clickTimer);
-            
-            if (clickCount === 3) {
-                devOverlay.classList.add('active');
-                setTimeout(() => devPassword.focus(), 100);
+    let clickCount = 0;
+    let clickTimer;
+
+    // Triple click on the lock icon opens the password prompt
+    triggerIcon.addEventListener('click', () => {
+        clickCount++;
+        clearTimeout(clickTimer);
+
+        if (clickCount === 3) {
+            devOverlay.classList.add('active');
+            setTimeout(() => devPassword.focus(), 100);
+            clickCount = 0;
+        } else {
+            clickTimer = setTimeout(() => {
                 clickCount = 0;
+            }, 400);
+        }
+    });
+
+    // Close modal on escape or clicking outside
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && devOverlay.classList.contains('active')) {
+            closeDevModal();
+        }
+    });
+
+    devOverlay.addEventListener('click', (e) => {
+        if (e.target === devOverlay) {
+            closeDevModal();
+        }
+    });
+
+    function closeDevModal() {
+        devOverlay.classList.remove('active');
+        devPassword.value = '';
+    }
+
+    // Handle password submission
+    devPassword.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            const val = devPassword.value;
+            // Simple hardcoded dev password 'admin'
+            if (val === 'admin') {
+                // Redirect to the original site which we assume is main.html
+                window.location.href = 'main.html';
             } else {
-                clickTimer = setTimeout(() => {
-                    clickCount = 0;
+                devPassword.classList.add('error-shake');
+                setTimeout(() => {
+                    devPassword.classList.remove('error-shake');
                 }, 400);
             }
-        });
-
-        // Close modal on escape or clicking outside
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && devOverlay.classList.contains('active')) {
-                closeDevModal();
-            }
-        });
-
-        devOverlay.addEventListener('click', (e) => {
-            if (e.target === devOverlay) {
-                closeDevModal();
-            }
-        });
-
-        function closeDevModal() {
-            devOverlay.classList.remove('active');
-            devPassword.value = '';
         }
-
-        // Handle password submission
-        devPassword.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                const val = devPassword.value;
-                // Simple hardcoded dev password 'admin'
-                if (val === 'admin') {
-                    // Redirect to the original site which we assume is main.html
-                    window.location.href = 'main.html';
-                } else {
-                    devPassword.classList.add('error-shake');
-                    setTimeout(() => {
-                        devPassword.classList.remove('error-shake');
-                    }, 400);
-                }
-            }
-        });
-    </script>
+    });
+</script>
 </body>
-</html>
+
+</html> -->
