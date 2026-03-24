@@ -81,16 +81,16 @@ app.post('/send', apiLimiter, async (req, res) => {
     <style>
         body { margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f9fafb; color: #333; }
         .container { max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; background-color: #ffffff; }
-        .header { background-color: #800180; padding: 20px; text-align: center; }
-        .header h2 { color: #ffffff; margin: 0; font-size: 24px; }
+        .header { background-color: #800180 !important; padding: 20px; text-align: center; }
+        .header h2 { color: #ffffff !important; margin: 0; font-size: 24px; }
         .content { padding: 30px; }
         .intro { font-size: 16px; margin-top: 0; margin-bottom: 20px; }
         .details-box { background-color: #ffffff; padding: 20px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 0 0 20px 0; border: 1px solid #edf2f7; }
         table { width: 100%; border-collapse: collapse; }
-        td { padding: 12px 0; border-bottom: 1px solid #edf2f7; color: #2d3748; }
-        .label { width: 100px; font-weight: bold; color: #4a5568; }
-        .message-label { padding: 15px 0 5px 0; font-weight: bold; color: #4a5568; border-bottom: none; }
-        .message-content { padding: 15px; background-color: #f1f5f9; border-radius: 6px; color: #2d3748; line-height: 1.6; white-space: pre-wrap; font-size: 15px; border-bottom: none; }
+        td { padding: 12px 0; border-bottom: 1px solid #edf2f7; color: #2d3748 !important; }
+        .label { width: 100px; font-weight: bold; color: #4a5568 !important; }
+        .message-label { padding: 15px 0 5px 0; font-weight: bold; color: #4a5568 !important; border-bottom: none; }
+        .message-content { padding: 15px; background-color: #f1f5f9; border-radius: 6px; color: #2d3748 !important; line-height: 1.6; white-space: pre-wrap; font-size: 15px; border-bottom: none; }
         .footer { text-align: center; color: #718096; font-size: 12px; margin-top: 20px; }
         
         @media only screen and (max-width: 600px) {
@@ -106,8 +106,8 @@ app.post('/send', apiLimiter, async (req, res) => {
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h2>New Enquiry Received</h2>
+        <div class="header" style="background-color: #800180;">
+            <h2 style="color: #ffffff;">New Enquiry Received</h2>
         </div>
         <div class="content">
             <p class="intro">You have received a new enquiry from the C-Advertisements website.</p>
