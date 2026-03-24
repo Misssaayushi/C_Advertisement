@@ -78,10 +78,10 @@ export default async function handler(req, res) {
 <body>
     <div class="container">
         <div class="header">
-            <h2>New Contact Form Submission</h2>
+            <h2>New Enquiry Received</h2>
         </div>
         <div class="content">
-            <p class="intro">You have received a new message from the C-Advertisements contact form.</p>
+            <p class="intro">You have received a new enquiry from the C-Advertisements website.</p>
             
             <div class="details-box">
                 <table>
