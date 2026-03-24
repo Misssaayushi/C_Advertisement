@@ -1,8 +1,11 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export default async function handler(req, res) {
+    if (!process.env.RESEND_API_KEY) {
+        console.error("Missing RESEND_API_KEY");
+        return res.status(500).json({ success: false, error: 'Server misconfiguration.' });
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
     // Only allow POST requests
     if (req.method !== 'POST') {
         return res.status(405).json({ success: false, error: 'Method not allowed' });
